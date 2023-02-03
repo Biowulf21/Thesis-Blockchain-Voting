@@ -164,6 +164,7 @@ function App() {
       const voteResult = await contractInstance.vote(chosenCandidateState);
       console.log(voteResult);
       alert("Voting Success");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       
