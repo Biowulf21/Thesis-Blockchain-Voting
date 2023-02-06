@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>}/>
-          <Route  path="/results" component={<Results/> }/>
+        {/* <Route path="/" element={<Login/>}/> */}
+          <Route  path="/" element={<Results/> }/>
           <Route path="*" element={<Error404Page/>}/>
       </Routes>
     </BrowserRouter>
