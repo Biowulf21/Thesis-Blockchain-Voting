@@ -4,16 +4,26 @@ import { Pie } from 'react-chartjs-2';
 import { useEffect } from 'react';
 ChartJS.register(ArcElement, Tooltip, Legend);
 import "./results-css.css";
+import { candidateInfo, contractInstance } from './login';
 
 const Results = () => {
-    useEffect(() => {
-        console.log('on result')
-      
-    
+    const [candidate1VoteCount, setCandidate1VoteCount] = useState(0);
+    const [candidate2VoteCount, setCandidate2VoteCount] = useState(0);
+
+    useEffect( () => {
+        const getVoteCounts = async () =>{
+
+            const votes = await candidateInfo() 
+            console.log(votes)
+            setCandidate1VoteCount(votes.candidate1VoteCountDecimal);
+            setCandidate2VoteCount(votes.candidate2VoteCountDecimal);
+         }
+        
+        getVoteCounts();
     }, [])
 
-    const [candidate1VoteCount, setCandidate1VoteCount] = useState(0);
-    const [candidate2VoteCount, setCandidate2VoteCount] = useState(0);``
+    
+
 
    const data = {
         labels: ['Candidate 1', 'Candidate 2'],
@@ -24,14 +34,6 @@ const Results = () => {
             backgroundColor: [
                 'rgba(255,0,0)',
                 'rgba(0,0,255)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
             ],
             borderWidth: 1,
           },

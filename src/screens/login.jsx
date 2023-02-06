@@ -1,7 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ethers } from 'ethers';
 
-var contractInstance;
+export var contractInstance;
+
+export async function candidateInfo() {
+    const candidate1VoteCount = await contractInstance.candidates(1);
+    const candidate2VoteCount = await contractInstance.candidates(2);
+
+    const candidate1VoteCountDecimal = parseInt(candidate1VoteCount.voteCount)
+    const candidate2VoteCountDecimal = parseInt(candidate2VoteCount.voteCount)
+
+    return  {candidate1VoteCountDecimal, candidate2VoteCountDecimal};
+}
 
 const Login = () => {
   const [account, setAccount] = useState(null);
@@ -12,6 +24,7 @@ const Login = () => {
   const [chosenCandidateState, setChosenCandidateState] = useState(null);
 
   const {ethereum} = window;
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (account !== null) {
@@ -161,10 +174,11 @@ const Login = () => {
 
     try {
       
-      const voteResult = await contractInstance.vote(chosenCandidateState);
-      console.log(voteResult);
+    //   const voteResult = await contractInstance.vote(chosenCandidateState);
+    //   console.log(voteResult);
       alert("Voting Success");
-      window.location.reload();
+    //   window.location.reload();
+    navigate('/results')
     } catch (error) {
       console.log(error);
       

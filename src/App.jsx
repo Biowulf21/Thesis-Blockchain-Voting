@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
-import { ethers } from 'ethers';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Login from './screens/login';
 import Results from './screens/results';
@@ -11,8 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Login/>}/> */}
-          <Route  path="/" element={<Results/> }/>
+        <Route path="/" element={<Login/>}/>
+          <Route  path="/results" element={<Results/> }/>
           <Route path="*" element={<Error404Page/>}/>
       </Routes>
     </BrowserRouter>
