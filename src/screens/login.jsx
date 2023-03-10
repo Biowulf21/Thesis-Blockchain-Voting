@@ -58,12 +58,37 @@ const Login = () => {
 
   
   async function connectToSmartContract(){
-    const address = '0x7A7333d93C9Ba7a3c63dD3F12D94622E440dfa99';
-    const ABI = [
+    const address = '0xE0E116656a751dbB9eFEb1aA2b2833B02afA5Ab2';
+    const ABI =[
       {
         "inputs": [],
         "stateMutability": "nonpayable",
         "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "voter",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "candidateId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "candidateName",
+            "type": "string"
+          }
+        ],
+        "name": "receipt",
+        "type": "event"
       },
       {
         "inputs": [
@@ -152,7 +177,7 @@ const Login = () => {
         "stateMutability": "view",
         "type": "function"
       }
-    ]
+    ] 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     contractInstance = new ethers.Contract(address, ABI, signer);
@@ -174,7 +199,7 @@ const Login = () => {
 
     try {
       
-    //   const voteResult = await contractInstance.vote(chosenCandidateState);
+      const voteResult = await contractInstance.vote(chosenCandidateState);
     //   console.log(voteResult);
       alert("Voting Success");
     //   window.location.reload();
