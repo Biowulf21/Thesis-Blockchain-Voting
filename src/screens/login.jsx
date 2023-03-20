@@ -58,7 +58,7 @@ const Login = () => {
 
   
   async function connectToSmartContract(){
-    const address = '0xE0E116656a751dbB9eFEb1aA2b2833B02afA5Ab2';
+    const address = '0xeBBDC9A410CC44c5026FBe58B6036cC839637496';
     const ABI =[
       {
         "inputs": [],
@@ -89,19 +89,6 @@ const Login = () => {
         ],
         "name": "receipt",
         "type": "event"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_candidateId",
-            "type": "uint256"
-          }
-        ],
-        "name": "vote",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
       },
       {
         "anonymous": false,
@@ -161,6 +148,19 @@ const Login = () => {
       {
         "inputs": [
           {
+            "internalType": "uint256",
+            "name": "_candidateId",
+            "type": "uint256"
+          }
+        ],
+        "name": "vote",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
             "internalType": "address",
             "name": "",
             "type": "address"
@@ -177,7 +177,7 @@ const Login = () => {
         "stateMutability": "view",
         "type": "function"
       }
-    ] 
+    ]
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     contractInstance = new ethers.Contract(address, ABI, signer);
